@@ -305,27 +305,27 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
 }
 
 .card[data-index="1"] {
-  background: url('black cats.jpeg') no-repeat center center / cover;
+  background: url('black cats.jpeg') no-repeat center center / contain;
   background-color: var(--dark-charcoal); /* fallback */
 }
 
 .card[data-index="2"] {
-  background: url('nevermore ravens.jpeg') no-repeat center center / cover;
+  background: url('nevermore ravens.jpeg') no-repeat center center / contain;
   background-color: var(--dark-charcoal); /* fallback */
 }
 
 .card[data-index="3"] {
-  background: url('nightshades.jpeg') no-repeat center center / cover;
+  background: url('nightshades.jpeg') no-repeat center center / contain;
   background-color: var(--dark-charcoal); /* fallback */
 }
 
 .card[data-index="4"] {
-  background: url('outcastes.jpeg') no-repeat center center / cover;
+  background: url('outcastes.jpeg') no-repeat center center / contain;
   background-color: var(--dark-charcoal); /* fallback */
 }
 
 .card[data-index="5"] {
-  background: url('werewolves.jpeg') no-repeat center center / cover;
+  background: url('werewolves.jpeg') no-repeat center center / contain;
   background-color: var(--dark-charcoal); /* fallback */
 }
 
