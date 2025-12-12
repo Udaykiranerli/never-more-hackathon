@@ -294,8 +294,12 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
   justify-content:space-between;
 }
 .card.visible{ opacity:1; transform:translateY(0) scale(1); }
-.card h3{ margin:0 0 8px;font-family:'Cinzel Decorative',serif;color:var(--violet-mist);font-size:18px }
-.card p{ margin:0;color:var(--pale-lavender);font-size:14px;line-height:1.5; flex:1; overflow:hidden }
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
 
 /* hover effect: subtle lift, scale and stronger purple glow */
 .card:hover{
@@ -305,28 +309,23 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
 }
 
 .card[data-index="1"] {
-  background: url('black cats.jpeg') no-repeat center center / contain;
-  background-color: var(--dark-charcoal); /* fallback */
+  /* using img */
 }
 
 .card[data-index="2"] {
-  background: url('nevermore ravens.jpeg') no-repeat center center / contain;
-  background-color: var(--dark-charcoal); /* fallback */
+  /* using img */
 }
 
 .card[data-index="3"] {
-  background: url('nightshades.jpeg') no-repeat center center / contain;
-  background-color: var(--dark-charcoal); /* fallback */
+  /* using img */
 }
 
 .card[data-index="4"] {
-  background: url('outcastes.jpeg') no-repeat center center / contain;
-  background-color: var(--dark-charcoal); /* fallback */
+  /* using img */
 }
 
 .card[data-index="5"] {
-  background: url('werewolves.jpeg') no-repeat center center / contain;
-  background-color: var(--dark-charcoal); /* fallback */
+  /* using img */
 }
 
 @media (max-width:900px){
