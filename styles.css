@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Merriweather:wght@300;400;700&display=swap');
+
+:root{
+  /* Gothic / Neo-goth palette: muted, cool tones */
+  --bg1:#030305;    /* near-black */
+  --bg2:#071028;    /* deep midnight blue */
+  --muted:#9aa3ab;  /* cool desaturated gray */
+  --accent:#163b6a; /* deep blue accent */
+  --accent-dark:#0b2438;
+  --glow:rgba(22,59,106,0.08);
+  --overlay: rgba(2,6,10,0.72);
+
+  /* User-specified gothic palette */
+  --jet-black: #000000;        /* Jet Black */
+  --dark-charcoal: #1A1A1A;   /* Dark Charcoal */
+  --gothic-purple: #4A148C;   /* Gothic Purple */
+  --violet-mist: #7B1FA2;     /* Violet Mist */
+  --misty-grey: #E0E0E0;      /* Misty Grey */
+  --pale-lavender: #D1C4E9;   /* Pale Lavender */
+}
+
+/* Apply the palette */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Merriweather', 'Cinzel Decorative', serif;
+  color:var(--misty-grey); /* main readable text uses Misty Grey */
+  background-color:var(--jet-black); /* primary background */
+  background-image: url('background.jpeg');
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  position:relative;
+}
+
+/* Ensure controls inherit the new serif */
+button, input, select, textarea, a { font-family: inherit; }
+
+/* subtle dark overlay to ensure readable content and moody tone */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background:linear-gradient(180deg,var(--overlay), rgba(0,0,0,0.65));
+  pointer-events:none;
+  z-index:0;
+}
+
+/* header */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 26px;
+  position:sticky;
+  top:0;
+  backdrop-filter:blur(6px);
+  /* subtle vignette and moon glow along the top */
+  background: linear-gradient(180deg, var(--dark-charcoal) 0%, rgba(7,16,36,0.6) 50%, transparent 100%);
+  border-bottom:1px solid var(--jet-black);
+  z-index:10;
+}
+
+/* Registration button in top-right */
+.reg-btn{
+  font-family:'Cinzel Decorative','Merriweather',serif;
+  font-size:14px;
+  padding:8px 16px;
+  border-radius:6px;
+  background: linear-gradient(90deg, var(--gothic-purple), var(--violet-mist));
+  color:var(--misty-grey);
+  text-decoration:none;
+  border:1px solid rgba(123,31,162,0.18);
+  cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  box-shadow:0 6px 18px rgba(74,20,140,0.16);
+}
+.reg-btn:hover{
+  transform:translateY(-2px) scale(1.03);
+  background: linear-gradient(90deg, var(--violet-mist), var(--gothic-purple));
+  box-shadow:0 10px 28px rgba(123,31,162,0.22);
+  color:#fff;
+}
+.reg-btn:active{
+  transform:translateY(0) scale(0.98);
+}
+.brand{display:flex;align-items:center;gap:12px}
+
+/* Wordmark styled with a gothic serif and a subtle moon glow */
+.wordmark{
+  font-family: 'Cinzel Decorative', 'Merriweather', serif;
+  font-weight:700;
+  font-size:34px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  color:#ffffff; /* keep main title white per request */
+  line-height:1;
+  text-shadow:0 6px 28px rgba(0,0,0,0.65), 0 0 18px rgba(22,59,106,0.06);
+}
+
+.wordmark::after{
+  content: "";
+  display:block;
+  width:64px;
+  height:4px;
+  margin-top:8px;
+  border-radius:3px;
+  background: linear-gradient(90deg, rgba(22,59,106,0.12), rgba(12,36,56,0.08));
+  box-shadow: 0 8px 30px rgba(22,59,106,0.06);
+}
+
+/* small subtitle (if present) */
+.wordmark .sub{display:block;font-family:Inter,Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* centered page heading */
+.centered{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:calc(100vh - 72px); /* leave space for header */
+  z-index:11;
+  flex-direction:column; /* stack title and subtitle */
+  text-align:center;
+}
+.center-title{
+  font-family: 'Cinzel Decorative', 'Merriweather', serif;
+  font-size:48px;
+  color:var(--gothic-purple);
+  /* gothic purple layered shadows for depth and glow */
+  text-shadow:
+    0 4px 6px rgba(0,0,0,0.72),
+    0 12px 30px rgba(123,76,192,0.18),
+    0 22px 60px rgba(123,76,192,0.12);
+  /* purple-tinted drop shadow for medium-range depth */
+  filter: drop-shadow(0 10px 24px rgba(123,76,192,0.10));
+  margin:0;
+}
+
+.center-caption{
+  font-family: 'Merriweather', serif;
+  font-style:italic;
+  color:#E0E0E0; /* Misty Grey */
+  margin-top:6px;
+  font-size:18px;
+  opacity:1;
+  letter-spacing:0.6px;
+}
+
+.center-desc{
+  max-width:780px;
+  color:var(--pale-lavender);
+  margin-top:18px;
+  font-family: 'Merriweather', serif;
+  font-size:16px;
+  line-height:1.6;
+  text-align:center;
+  opacity:0.95;
+}
+
+@media (max-width:640px){
+  .center-title{font-size:28px}
+  .center-caption{font-size:13px}
+  .center-desc{font-size:14px;padding:0 18px}
+}
+
+/* Links, accents and interactive elements use Violet Mist on hover and Gothic Purple for buttons */
+a, .link{ color:var(--gothic-purple); }
+a:hover, .link:hover{ color:var(--violet-mist); }
+
+/* Cards / secondary backgrounds use dark charcoal */
+.card, .hackathon{
+  background: linear-gradient(180deg, var(--dark-charcoal), rgba(10,10,10,0.94));
+  border:1px solid rgba(224,224,224,0.06);
+}
+
+/* subtle borders and separators use Misty Grey at low opacity */
+hr, .divider{ border-color: rgba(224,224,224,0.06) }
+
+/* ensure the overlay doesn't cover header/title */
+.site-header, .centered{position:relative;z-index:12}
+
+/* Enter button fixed at bottom center with Neo-Bloom halo */
+.enter-wrap{position:fixed;left:50%;bottom:36px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;justify-content:center}
+.enter-btn{
+  -webkit-appearance:none;appearance:none;border:0;cursor:pointer;
+  font-family:'Cinzel Decorative','Merriweather',serif;
+  font-size:18px;padding:12px 28px;border-radius:999px;
+  color:var(--misty-grey);
+  background:linear-gradient(90deg,var(--gothic-purple),var(--violet-mist));
+  box-shadow:0 10px 30px rgba(74,20,140,0.18), 0 2px 6px rgba(0,0,0,0.6);
+  position:relative;overflow:visible;transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+  text-decoration:none; /* remove underline for anchor */
+  display:inline-block; /* ensure anchor behaves like button */
+}
+.enter-btn:hover{
+  transform:translateY(-4px) scale(1.02);
+  background: linear-gradient(90deg,var(--violet-mist), var(--gothic-purple));
+  color:var(--jet-black);
+  box-shadow:0 20px 50px rgba(123,31,162,0.28), 0 6px 18px rgba(0,0,0,0.6);
+}
+.enter-btn:focus{ outline:2px solid rgba(123,31,162,0.18); outline-offset:6px }
+.enter-btn:active{ transform:translateY(-2px) scale(.995); }
+
+/* neo-bloom halo */
+.enter-btn::before{
+  content:"";position:absolute;left:-18px;right:-18px;top:-18px;bottom:-18px;border-radius:999px;z-index:-1;
+  background: radial-gradient(circle at 30% 30%, rgba(123,31,162,0.12), transparent 25%),
+              radial-gradient(circle at 70% 70%, rgba(74,20,140,0.10), transparent 30%);
+  filter:blur(18px) saturate(140%);opacity:0.95;transition:opacity .2s ease, transform .2s ease;
+}
+.enter-btn:active::before{ transform:scale(.96); opacity:0.85 }
+
+/* subtle pulse to the halo */
+@keyframes haloPulse{ 0%{ transform:scale(0.98); opacity:.9 }50%{ transform:scale(1.02); opacity:1 }100%{ transform:scale(0.98); opacity:.9 } }
+.enter-btn::before{ animation: haloPulse 6s ease-in-out infinite }
+
+@media (max-width:640px){ .enter-btn{ padding:10px 20px; font-size:16px; bottom:20px } }
+
+/* background actor container sits behind content but above base overlay */
+.bg-actors{ position:fixed; inset:0; pointer-events:none; z-index:2; }
+.actor{ position:absolute; color:rgba(123,31,162,0.28); /* stronger gothic purple tint */ transform-origin:center; will-change:transform,opacity; filter:contrast(1.05) brightness(1.02) }
+
+/* crow styles and flight paths */
+.crow{ width:120px; height:auto; opacity:0.95 }
+.crow.crow-1{ top:18%; left:-10%; animation: flyRight 14s linear infinite; transform: translateZ(0) }
+.crow.crow-2{ top:32%; right:-12%; animation: flyLeft 18s linear infinite; opacity:0.9 }
+
+@keyframes flyRight{
+  0%{ transform:translateX(0) translateY(0) rotate(0deg); opacity:0.0 }
+  10%{ opacity:0.6 }
+  50%{ transform:translateX(120vw) translateY(-6vh) rotate(6deg); opacity:0.9 }
+  100%{ transform:translateX(240vw) translateY(-12vh) rotate(6deg); opacity:0 }
+}
+@keyframes flyLeft{
+  0%{ transform:translateX(0) translateY(0) rotate(0deg); opacity:0 }
+  10%{ opacity:0.5 }
+  50%{ transform:translateX(-110vw) translateY(-4vh) rotate(-6deg); opacity:0.9 }
+  100%{ transform:translateX(-220vw) translateY(-8vh) rotate(-6deg); opacity:0 }
+}
+
+/* skulls drift subtly and bob */
+.skull{ width:96px; opacity:0.9; color:rgba(123,31,162,0.24) }
+.skull.skull-1{ left:8%; bottom:12%; animation: bobWalk 10s ease-in-out infinite }
+.skull.skull-2{ right:14%; bottom:20%; animation: bobWalk 12s ease-in-out infinite; opacity:0.85 }
+
+@keyframes bobWalk{
+  0%{ transform:translateY(0) translateX(0) rotate(-2deg); }
+  50%{ transform:translateY(-8px) translateX(6px) rotate(2deg); }
+  100%{ transform:translateY(0) translateX(0) rotate(-2deg); }
+}
+
+/* reduce motion for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .crow,.skull{ animation:none; opacity:0.75 }
+}
+
+/* End of stylesheet (Neo‑Bloom effects removed)
+
+/* Cards layout + reveal animation */
+.cards{
+  width:100%;
+  max-width:1200px;
+  margin:18px auto 0;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap; /* keep all cards on one line */
+  gap:18px;
+  padding:6px 12px;
+  overflow-x:auto; /* allow horizontal scroll on small viewports */
+  -webkit-overflow-scrolling:touch;
+  align-items:flex-start;
+  justify-content:center;
+  /* hide scrollbar but keep scroll */
+  -ms-overflow-style:none; /* IE and Edge */
+  scrollbar-width:none; /* Firefox */
+}
+.cards::-webkit-scrollbar{ display:none; } /* Chrome, Safari, Opera */
+.card{
+  background: linear-gradient(180deg, var(--dark-charcoal), rgba(10,10,12,0.88));
+  padding:20px;
+  border-radius:12px;
+  border:1px solid rgba(224,224,224,0.04);
+  color:var(--misty-grey);
+  opacity:0;
+  transform:translateY(18px) scale(0.995);
+  transition:opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1), box-shadow .2s, border .2s;
+  box-shadow:0 8px 30px rgba(0,0,0,0.6);
+  flex: 0 0 calc((100% - 4*18px) / 5); /* five equal cards when space allows */
+  min-width:220px;
+  height: 280px; /* uniform card height */
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.card.visible{ opacity:1; transform:translateY(0) scale(1); }
+.card h3{ margin:0 0 8px;font-family:'Cinzel Decorative',serif;color:var(--violet-mist);font-size:18px }
+.card p{ margin:0;color:var(--pale-lavender);font-size:14px;line-height:1.5; flex:1; overflow:hidden }
+
+/* hover effect: subtle lift, scale and stronger purple glow */
+.card:hover{
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 28px 60px rgba(74,20,140,0.28), 0 0 20px rgba(0,191,255,0.6);
+  border: 2px solid rgba(0,191,255,0.8);
+}
+
+.card[data-index="1"] {
+  background: url('black cats.jpeg') no-repeat center center / cover;
+  background-color: var(--dark-charcoal); /* fallback */
+}
+
+.card[data-index="2"] {
+  background: url('nevermore ravens.jpeg') no-repeat center center / cover;
+  background-color: var(--dark-charcoal); /* fallback */
+}
+
+.card[data-index="3"] {
+  background: url('nightshades.jpeg') no-repeat center center / cover;
+  background-color: var(--dark-charcoal); /* fallback */
+}
+
+.card[data-index="4"] {
+  background: url('outcastes.jpeg') no-repeat center center / cover;
+  background-color: var(--dark-charcoal); /* fallback */
+}
+
+.card[data-index="5"] {
+  background: url('werewolves.jpeg') no-repeat center center / cover;
+  background-color: var(--dark-charcoal); /* fallback */
+}
+
+@media (max-width:900px){
+  /* on narrower screens allow cards to be a bit wider and scroll */
+  .card{ flex: 0 0 60%; min-width:260px }
+}
+
+@media (max-width:480px){
+  /* smallest screens: reduce padding */
+  .card{ padding:14px; min-width:220px }
+}
+
+/* Footer styling */
+.footer {
+  text-align: center;
+  padding: 30px 20px;
+  background: linear-gradient(180deg, var(--dark-charcoal), rgba(10,10,10,0.94));
+  border-top: 2px solid var(--gothic-purple);
+  color: var(--misty-grey);
+  font-family: 'Merriweather', serif;
+  font-size: 14px;
+  margin-top: 40px;
+  position: relative;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(74,20,140,0.3);
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--violet-mist), transparent);
+  box-shadow: 0 0 10px rgba(123,31,162,0.8);
+}
+.footer h3 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 24px;
+  color: var(--violet-mist);
+  margin-bottom: 15px;
+  text-shadow: 0 0 12px rgba(123,31,162,0.8), 0 4px 8px rgba(0,0,0,0.6);
+  letter-spacing: 2px;
+}
+.footer p {
+  margin: 8px 0;
+  color: var(--pale-lavender);
+  font-size: 16px;
+  text-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+.footer strong {
+  color: var(--gothic-purple);
+  text-shadow: 0 0 6px rgba(74,20,140,0.6);
+}
