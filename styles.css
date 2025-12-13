@@ -202,7 +202,6 @@ body::before{
   .main-nav a:hover {
     background: rgba(74, 20, 140, 0.2);
     border-color: var(--violet-mist);
-    transform: none; /* Remove lift on mobile */
   }
 }
 
