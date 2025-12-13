@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Never More — Ravens</title>
+  <title>Never More — Organizers</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -28,20 +28,19 @@
       </ul>
     </nav>
   </header>
+  <div id="overlay" class="overlay"></div>
 
   <main class="centered">
-    <h1 class="center-title">Ravens</h1>
-    <p class="center-caption">wise and watchful collaborators</p>
-    <p class="center-desc">Explore collaborative experiments and intelligent designs. Ravens symbolize the observant minds that gather knowledge, building upon each other's ideas to forge powerful, interconnected systems.</p>
-    <h2>Domain: Smart Education</h2>
-    <h3>Problem Statements:</h3>
-    <ol class="problem-statements">
-      <li>Automated student attendance monitoring and analytics system for colleges</li>
-      <li>Smart curriculum activity and attendance web or app</li>
-      <li>AI based internship recommendation engine for PM internship scheme</li>
-      <li>Gamified learning platform for rural education</li>
-    </ol>
-    <a class="enter-btn" href="darkworld-cards.html">Back to Cards</a>
+    <h1 class="center-title">Organizers</h1>
+    <p class="center-desc">Chaitanya Engineering College — Department of CSE</p>
+
+    <section class="organizers-list" style="max-width:720px;margin-top:20px;text-align:left">
+      <h3 style="font-family:'Cinzel Decorative','Merriweather',serif;color:var(--gothic-purple);">Coordinators</h3>
+      <p><strong>Main Coordinator:</strong> E. Uday Kiran</p>
+      <p><strong>Assistant Coordinators:</strong> P. Vinay Kumar & Y. Yogeswararao</p>
+    </section>
+
+    <a class="enter-btn" href="darkworld-cards.html" style="margin-top:26px">Back to Cards</a>
   </main>
 
   <footer class="footer" id="organizers">
@@ -58,10 +57,20 @@
     nav.classList.toggle('show');
     const hamburger = document.querySelector('.hamburger');
     hamburger.classList.toggle('open');
-    const body = document.body;
+    const overlay = document.getElementById('overlay');
     const isOpen = nav.classList.contains('show');
-    body.style.paddingTop = isOpen ? '490px' : '80px';
+    overlay.style.display = isOpen ? 'block' : 'none';
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('overlay');
+    overlay.addEventListener('click', toggleNav);
+
+    // Close menu when clicking a nav link
+    document.querySelectorAll('.main-nav a').forEach(link => {
+      link.addEventListener('click', toggleNav);
+    });
+  });
   </script>
 </body>
 </html>

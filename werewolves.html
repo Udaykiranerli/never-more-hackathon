@@ -20,7 +20,7 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="teams.html">Teams</a></li>
-        <li><a href="#organizers">Organizers</a></li>
+        <li><a href="organizers.html">Organizers</a></li>
         <li><a href="timeline.html">Timeline</a></li>
         <li><a href="rules.html">Rules</a></li>
         <li><a href="faqs.html">FAQs</a></li>
@@ -28,11 +28,19 @@
       </ul>
     </nav>
   </header>
+  <div id="overlay" class="overlay"></div>
 
   <main class="centered">
     <h1 class="center-title">Werewolves</h1>
     <p class="center-caption">ferocious and adaptive teams</p>
     <p class="center-desc">Experience the power of dynamic groups and shape-shifting strategies. Werewolves stand for the adaptable teams that transform challenges into opportunities, howling success in the face of adversity.</p>
+    <h2>Domain: Clean and Green Technology</h2>
+    <h3>Problem Statements:</h3>
+    <ol class="problem-statements">
+      <li>Waste segregation monitoring system for urban local bodies</li>
+      <li>Smart waste segregation and recycling system</li>
+      <li>Grey water management and reuse; wetland management and water conservation</li>
+    </ol>
     <a class="enter-btn" href="darkworld-cards.html">Back to Cards</a>
   </main>
 
@@ -48,10 +56,20 @@
     nav.classList.toggle('show');
     const hamburger = document.querySelector('.hamburger');
     hamburger.classList.toggle('open');
-    const body = document.body;
+    const overlay = document.getElementById('overlay');
     const isOpen = nav.classList.contains('show');
-    body.style.paddingTop = isOpen ? '490px' : '80px';
+    overlay.style.display = isOpen ? 'block' : 'none';
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('overlay');
+    overlay.addEventListener('click', toggleNav);
+
+    // Close menu when clicking a nav link
+    document.querySelectorAll('.main-nav a').forEach(link => {
+      link.addEventListener('click', toggleNav);
+    });
+  });
   </script>
 </body>
 </html>
