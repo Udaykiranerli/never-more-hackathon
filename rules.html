@@ -132,9 +132,11 @@
   <script>
   function toggleNav() {
     const nav = document.getElementById('main-nav');
-    nav.classList.toggle('show');
     const hamburger = document.querySelector('.hamburger');
+    const body = document.body;
+    const isOpen = nav.classList.toggle('show');
     hamburger.classList.toggle('open');
+    body.style.paddingTop = isOpen ? '490px' : '80px';
   }
   </script>
 </body>

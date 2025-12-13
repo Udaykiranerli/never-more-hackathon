@@ -48,6 +48,9 @@
     nav.classList.toggle('show');
     const hamburger = document.querySelector('.hamburger');
     hamburger.classList.toggle('open');
+    const body = document.body;
+    const isOpen = nav.classList.contains('show');
+    body.style.paddingTop = isOpen ? '490px' : '80px';
   }
   </script>
 </body>

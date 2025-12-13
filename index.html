@@ -134,10 +134,24 @@ Join us for a one-of-a-kind NEVERMORE Hackathon, designed to challenge your mind
   <script>
   function toggleNav() {
     const nav = document.getElementById('main-nav');
-    nav.classList.toggle('show');
     const hamburger = document.querySelector('.hamburger');
+    const body = document.body;
+    const isOpen = nav.classList.toggle('show');
     hamburger.classList.toggle('open');
+    body.style.paddingTop = isOpen ? '490px' : '80px';
   }
+
+  // Close menu when clicking a nav link
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      const nav = document.getElementById('main-nav');
+      const hamburger = document.querySelector('.hamburger');
+      const body = document.body;
+      nav.classList.remove('show');
+      hamburger.classList.remove('open');
+      body.style.paddingTop = '80px';
+    });
+  });
   </script>
 
   <footer class="footer" id="organizers">

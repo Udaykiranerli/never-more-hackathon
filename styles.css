@@ -34,6 +34,7 @@ body{
   background-attachment: fixed;
   position:relative;
   padding-top: 80px; /* for fixed header */
+  transition: padding-top 0.3s ease;
 }
 
 /* Ensure controls inherit the new serif */
