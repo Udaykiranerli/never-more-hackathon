@@ -19,14 +19,14 @@
     <nav class="main-nav" id="main-nav">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="#">Teams</a></li>
+        <li><a href="teams.html">Teams</a></li>
         <li><a href="#organizers">Organizers</a></li>
-        <li><a href="#">Timeline</a></li>
-        <li><a href="#">Rules</a></li>
-        <li><a href="#">FAQs</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
+        <li><a href="rules.html">Rules</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="register.html">Register</a></li>
       </ul>
     </nav>
-    <a class="reg-btn" href="register.html" aria-label="Register for hackathon">Register</a>
   </header>
 
   <main class="centered">
@@ -54,6 +54,8 @@
   function toggleNav() {
     const nav = document.getElementById('main-nav');
     nav.classList.toggle('show');
+    const hamburger = document.querySelector('.hamburger');
+    hamburger.classList.toggle('open');
   }
   </script>
 
