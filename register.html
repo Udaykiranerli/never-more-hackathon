@@ -87,6 +87,24 @@
       color: var(--gothic-purple);
       text-shadow: 0 4px 12px rgba(74,20,140,0.6);
     }
+    /* Mobile-specific tweaks for the register form */
+    @media (max-width: 480px) {
+      .form-container {
+        margin: 12px;
+        padding: 18px;
+      }
+      .form-title { font-size: 20px; margin-bottom:18px }
+      label { font-size: 14px }
+      input, select, textarea { padding: 10px; font-size: 14px }
+      button[type="submit"] { padding: 12px; font-size: 16px }
+    }
+
+    /* Payment panel (hidden by default) */
+    .payment-panel{ display:none; margin-top:16px; padding:12px; border-radius:10px; background:linear-gradient(180deg, rgba(10,10,10,0.6), rgba(7,16,36,0.6)); border:1px solid rgba(224,224,224,0.04)}
+    .payment-panel.show{ display:block }
+    .pay-btn{ display:inline-block; background:linear-gradient(90deg,var(--gothic-purple),var(--violet-mist)); color:var(--misty-grey); padding:12px 18px; border-radius:8px; text-decoration:none; font-weight:700 }
+    .qr-fallback{ margin-top:12px; display:flex; gap:12px; align-items:center }
+    .qr-fallback img{ width:140px; height:140px; border-radius:8px; background:#111 }
   </style>
 </head>
 <body>
@@ -164,6 +182,18 @@
           <option value="wallet">Digital Wallet</option>
         </select>
       </div>
+      <!-- payment UI: shown when user selects UPI -->
+      <div class="payment-panel" id="payment-panel" aria-hidden="true">
+        <div style="font-weight:700;color:var(--violet-mist)">UPI Payment</div>
+        <p style="margin:6px 0 10px;color:var(--misty-grey)">Amount to pay: <strong>₹400</strong></p>
+        <!-- Edit these values to your UPI VPA and name. Keep them server-side in production. -->
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">(If your phone supports UPI links, tapping Pay will open the UPI app.)</div>
+        <a id="pay-link" class="pay-btn" href="#" rel="noopener noreferrer">Pay ₹400</a>
+        <div class="qr-fallback" id="qr-fallback" style="display:none">
+          <div style="color:var(--misty-grey);font-size:13px">Or scan QR to pay:</div>
+          <img id="qr-img" alt="UPI QR code">
+        </div>
+      </div>
       <div class="form-group">
         <label for="utr-number">UTR Number</label>
         <input type="text" id="utr-number" name="utr-number" required>
@@ -176,7 +206,7 @@
     <div class="footer-inner">
       <div class="college">chaitanya engineeriing college</div>
       <div class="dept">department of CSE</div>
-      <div><a class="organizers-link" href="organizers.html">Organizers &amp; Coordinators</a></div>
+      
     </div>
   </footer>
 
@@ -195,6 +225,75 @@
     const overlay = document.getElementById('overlay');
     overlay.addEventListener('click', toggleNav);
   });
+  </script>
+  <script>
+  // UPI payment helper — client-side only. Replace upiConfig.pa with your real VPA before publishing.
+  (function(){
+    const upiConfig = {
+      pa: '6305076825-2@ybl', // <-- replace with your UPI VPA (example)
+      pn: 'UDAY',             // payer name (optional)
+      am: '400',              // amount in INR
+      cu: 'INR',
+      tn: 'NeverMore Registration'
+    };
+
+    const paymentMethod = document.getElementById('payment-method');
+    const panel = document.getElementById('payment-panel');
+    const payLink = document.getElementById('pay-link');
+    const qrFallback = document.getElementById('qr-fallback');
+    const qrImg = document.getElementById('qr-img');
+
+    function buildUpiUri(){
+      // Build UPI deeplink according to UPI spec
+      const params = new URLSearchParams();
+      params.set('pa', upiConfig.pa);
+      if(upiConfig.pn) params.set('pn', upiConfig.pn);
+      params.set('am', upiConfig.am);
+      params.set('cu', upiConfig.cu);
+      if(upiConfig.tn) params.set('tn', upiConfig.tn);
+      return 'upi://pay?' + params.toString();
+    }
+
+    function buildQrUrl(upiUri){
+      // Use Google Chart API to render a QR code as a fallback. This is a client-side convenience only.
+      const enc = encodeURIComponent(upiUri);
+      return 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=' + enc;
+    }
+
+    paymentMethod && paymentMethod.addEventListener('change', function(e){
+      if(e.target.value === 'upi'){
+        panel.classList.add('show');
+        panel.setAttribute('aria-hidden','false');
+        const upiUri = buildUpiUri();
+        payLink.setAttribute('href', upiUri);
+        // show QR as fallback
+        qrImg.setAttribute('src', buildQrUrl(upiUri));
+        qrFallback.style.display = 'flex';
+      } else {
+        panel.classList.remove('show');
+        panel.setAttribute('aria-hidden','true');
+        payLink.setAttribute('href', '#');
+        qrFallback.style.display = 'none';
+      }
+    });
+
+    // Form submit: prevent final submit until user provides UTR (or implement your server-side flow)
+    const form = document.querySelector('.form-container');
+    form && form.addEventListener('submit', function(ev){
+      const pm = document.getElementById('payment-method').value;
+      if(pm === 'upi'){
+        // Ask user to confirm payment was completed and filled UTR.
+        const utr = document.getElementById('utr-number').value.trim();
+        if(!utr){
+          ev.preventDefault();
+          alert('Please complete the UPI payment (Pay ₹400) and enter the UTR/transaction reference here before submitting.');
+          return false;
+        }
+        // If you want automatic verification, you'll need a server-side integration with a payment gateway or bank APIs.
+      }
+      // for non-UPI methods this example does no real payment processing
+    });
+  })();
   </script>
 </body>
 </html>

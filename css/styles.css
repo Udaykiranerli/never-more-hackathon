@@ -62,7 +62,7 @@ body::before{
   /* subtle vignette and moon glow along the top */
   background: linear-gradient(180deg, var(--dark-charcoal) 0%, rgba(7,16,36,0.6) 50%, transparent 100%);
   border-bottom:1px solid var(--jet-black);
-  z-index:10;
+  z-index:1000;
 }
 
 .overlay {
@@ -362,7 +362,8 @@ a:hover, .link:hover{ color:var(--violet-mist); }
 hr, .divider{ border-color: rgba(224,224,224,0.06) }
 
 /* ensure the overlay doesn't cover header/title */
-.site-header, .centered{position:relative;z-index:12}
+.site-header{position:relative;z-index:1000}
+.centered{position:relative;z-index:12}
 
 /* Enter button fixed at bottom center with Neo-Bloom halo */
 .enter-wrap{position:fixed;left:50%;bottom:36px;transform:translateX(-50%);z-index:30;display:flex;align-items:center;justify-content:center}
@@ -477,13 +478,7 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
   margin-top:6px;
   font-size:14px;
 }
-.footer .organizers-link{
-  display:inline-block;
-  margin-top:10px;
-  color:var(--violet-mist);
-  text-decoration:underline;
-  font-family: 'Merriweather', serif;
-}
+/* .footer .organizers-link removed — footer link was deleted from HTML files */
 @media (max-width:640px){
   .footer{padding:22px 14px;font-size:14px}
   .footer .college{font-size:16px}
@@ -509,8 +504,9 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
 .card.visible{ opacity:1; transform:translateY(0) scale(1); }
 .card img {
   width: 100%;
+  display: block;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover; /* fill the card area without distortion */
   border-radius: 12px;
 }
 
@@ -523,12 +519,14 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
 
 @media (max-width:900px){
   /* on narrower screens allow cards to wrap and be smaller */
-  .card{ flex: 0 0 calc(50% - 9px); min-width:200px }
+  .card{ flex: 0 0 calc(50% - 9px); min-width:180px }
 }
 
 @media (max-width:480px){
-  /* smallest screens: reduce padding */
-  .card{ padding:14px; min-width:220px }
+  /* smallest screens: stack cards vertically and remove card padding so images fit */
+  .cards { flex-direction: column; gap: 16px; padding: 8px 12px; }
+  .card{ padding:0; min-width:unset; width:100%; height:180px; flex:0 0 auto; border-radius:12px }
+  .card img { height:100%; width:100%; object-fit:cover; display:block; border-radius:12px }
 }
 
 /* Footer styling */
