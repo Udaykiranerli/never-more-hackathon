@@ -175,11 +175,7 @@
       <div class="form-group">
         <label for="payment-method">Payment Method</label>
         <select id="payment-method" name="payment-method" required>
-          <option value="">Select payment method</option>
-          <option value="upi">UPI</option>
-          <option value="card">Credit/Debit Card</option>
-          <option value="net-banking">Net Banking</option>
-          <option value="wallet">Digital Wallet</option>
+          <option value="upi" selected>UPI</option>
         </select>
       </div>
       <!-- payment UI: shown when user selects UPI -->
@@ -189,10 +185,6 @@
         <!-- Edit these values to your UPI VPA and name. Keep them server-side in production. -->
         <div style="font-size:12px;color:var(--muted);margin-bottom:8px">(If your phone supports UPI links, tapping Pay will open the UPI app.)</div>
         <a id="pay-link" class="pay-btn" href="#" rel="noopener noreferrer">Pay ₹400</a>
-        <div class="qr-fallback" id="qr-fallback" style="display:none">
-          <div style="color:var(--misty-grey);font-size:13px">Or scan QR to pay:</div>
-          <img id="qr-img" alt="UPI QR code">
-        </div>
       </div>
       <div class="form-group">
         <label for="utr-number">UTR Number</label>
@@ -240,8 +232,6 @@
     const paymentMethod = document.getElementById('payment-method');
     const panel = document.getElementById('payment-panel');
     const payLink = document.getElementById('pay-link');
-    const qrFallback = document.getElementById('qr-fallback');
-    const qrImg = document.getElementById('qr-img');
 
     function buildUpiUri(){
       // Build UPI deeplink according to UPI spec
@@ -254,28 +244,25 @@
       return 'upi://pay?' + params.toString();
     }
 
-    function buildQrUrl(upiUri){
-      // Use Google Chart API to render a QR code as a fallback. This is a client-side convenience only.
-      const enc = encodeURIComponent(upiUri);
-      return 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=' + enc;
-    }
-
     paymentMethod && paymentMethod.addEventListener('change', function(e){
       if(e.target.value === 'upi'){
         panel.classList.add('show');
         panel.setAttribute('aria-hidden','false');
         const upiUri = buildUpiUri();
         payLink.setAttribute('href', upiUri);
-        // show QR as fallback
-        qrImg.setAttribute('src', buildQrUrl(upiUri));
-        qrFallback.style.display = 'flex';
       } else {
         panel.classList.remove('show');
         panel.setAttribute('aria-hidden','true');
         payLink.setAttribute('href', '#');
-        qrFallback.style.display = 'none';
       }
     });
+
+    if(paymentMethod.value === 'upi'){
+      panel.classList.add('show');
+      panel.setAttribute('aria-hidden','false');
+      const upiUri = buildUpiUri();
+      payLink.setAttribute('href', upiUri);
+    }
 
     // Form submit: prevent final submit until user provides UTR (or implement your server-side flow)
     const form = document.querySelector('.form-container');

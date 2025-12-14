@@ -6,6 +6,59 @@
   <title>Timeline - Never More</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .timeline-container {
+      max-width: 800px;
+      margin: 40px auto;
+      text-align: left;
+    }
+    .day-schedule {
+      margin-bottom: 40px;
+      background: linear-gradient(180deg, var(--dark-charcoal), rgba(10,10,10,0.94));
+      border: 1px solid rgba(224,224,224,0.06);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(74,20,140,0.2);
+    }
+    .day-schedule h3 {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--violet-mist);
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 24px;
+    }
+    .schedule-list {
+      list-style: none;
+      padding: 0;
+    }
+    .schedule-list li {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      font-family: 'Merriweather', serif;
+      color: var(--misty-grey);
+      font-size: 16px;
+    }
+    .schedule-list strong {
+      color: var(--violet-mist);
+    }
+    @media (max-width: 768px) {
+      .timeline-container {
+        margin: 20px;
+      }
+      .day-schedule {
+        padding: 15px;
+      }
+      .day-schedule h3 {
+        font-size: 20px;
+      }
+      .schedule-list li {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -63,8 +116,26 @@
   </div>
 
   <main class="centered">
-    <h1>Timeline</h1>
-    <p>Event schedule coming soon.</p>
+    <h1 class="center-title">Timeline</h1>
+    <p class="center-desc">Start Date: 23/12/2025 | End Date: 24/12/2025</p>
+
+    <div class="timeline-container">
+      <div class="day-schedule">
+        <h3>23/12/2025</h3>
+        <ul class="schedule-list">
+          <li><strong>9:30am - 10:30am:</strong> Inauguration</li>
+          <li><strong>10:30am - 1:00pm:</strong> Coding session  (starts from scratch)</li>
+          <li><strong>2:00pm - 4:00pm:</strong> Continue of coding session</li>
+        </ul>
+      </div>
+      <div class="day-schedule">
+        <h3>24/12/2025</h3>
+        <ul class="schedule-list">
+          <li><strong>9:00am - 1:00pm:</strong> Continuation of coding</li>
+          <li><strong>2:00pm - 4:00pm:</strong> Presentation & Price distribution</li>
+        </ul>
+      </div>
+    </div>
   </main>
 
   <footer class="footer" id="organizers">

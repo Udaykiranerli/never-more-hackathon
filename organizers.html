@@ -5,6 +5,50 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Never More — Organizers</title>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .coordinators-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .coordinator-card {
+      background: linear-gradient(180deg, var(--dark-charcoal), rgba(10,10,10,0.94));
+      border: 1px solid rgba(224,224,224,0.06);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(74,20,140,0.2);
+      flex: 1;
+      min-width: 250px;
+      transition: transform 0.3s ease;
+    }
+    .coordinator-card:hover {
+      transform: translateY(-5px);
+    }
+    .coordinator-card h4 {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--violet-mist);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .coordinator-card p {
+      font-family: 'Merriweather', serif;
+      color: var(--misty-grey);
+      font-size: 16px;
+    }
+    @media (max-width: 768px) {
+      .coordinators-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .coordinator-card {
+        min-width: unset;
+        padding: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -36,8 +80,16 @@
 
     <section class="organizers-list" style="max-width:720px;margin-top:20px;text-align:left">
       <h3 style="font-family:'Cinzel Decorative','Merriweather',serif;color:var(--gothic-purple);">Coordinators</h3>
-      <p><strong>Main Coordinator:</strong> E. Uday Kiran</p>
-      <p><strong>Assistant Coordinators:</strong> P. Vinay Kumar & Y. Yogeswararao</p>
+      <div class="coordinators-container">
+        <div class="coordinator-card">
+          <h4>Main Coordinator</h4>
+          <p>E.Uday Kiran</p>
+        </div>
+        <div class="coordinator-card">
+          <h4>Assistant Coordinators</h4>
+          <p>P.Vinay Kumar & Y.Yogeswararao</p>
+        </div>
+      </div>
     </section>
 
     <a class="enter-btn" href="darkworld-cards.html" style="margin-top:26px">Back to Cards</a>
