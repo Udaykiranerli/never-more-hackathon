@@ -65,11 +65,6 @@
   document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlay');
     overlay.addEventListener('click', toggleNav);
-
-    // Close menu when clicking a nav link
-    document.querySelectorAll('.main-nav a').forEach(link => {
-      link.addEventListener('click', toggleNav);
-    });
   });
   </script>
 </body>

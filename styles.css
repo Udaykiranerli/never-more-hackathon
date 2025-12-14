@@ -74,7 +74,7 @@ body::before{
   height: 100%;
   background: rgba(0,0,0,0.5);
   z-index: 15;
-  cursor: pointer;
+  cursor: default;
 }
 
 /* Registration button in top-right */
@@ -127,6 +127,12 @@ body::before{
   position: relative;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .main-nav a:hover {
@@ -181,13 +187,13 @@ body::before{
     position: fixed;
     left: 0;
     top: 80px;
-    width: 250px;
+    width: 100%;
     height: calc(100vh - 80px);
     background: linear-gradient(180deg, var(--dark-charcoal), rgba(7,16,36,0.9));
     backdrop-filter: blur(8px);
     border-right: 1px solid var(--jet-black);
     box-shadow: 0 8px 24px rgba(0,0,0,0.8);
-    z-index: 20;
+    z-index: 100;
     padding: 20px 0;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
@@ -215,6 +221,12 @@ body::before{
     margin: 0;
     border-radius: 6px;
     transition: all 0.3s ease;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
   .main-nav a:hover {
     background: rgba(74, 20, 140, 0.2);

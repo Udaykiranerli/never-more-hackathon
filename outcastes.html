@@ -28,6 +28,7 @@
       </ul>
     </nav>
   </header>
+  <div id="overlay" class="overlay"></div>
 
   <main class="centered">
     <h1 class="center-title">Outcastes</h1>
@@ -57,10 +58,15 @@
     nav.classList.toggle('show');
     const hamburger = document.querySelector('.hamburger');
     hamburger.classList.toggle('open');
-    const body = document.body;
+    const overlay = document.getElementById('overlay');
     const isOpen = nav.classList.contains('show');
-    body.style.paddingTop = isOpen ? '490px' : '80px';
+    overlay.style.display = isOpen ? 'block' : 'none';
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('overlay');
+    overlay.addEventListener('click', toggleNav);
+  });
   </script>
 </body>
 </html>
