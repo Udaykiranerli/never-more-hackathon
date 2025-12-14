@@ -98,12 +98,7 @@
       input, select, textarea { padding: 10px; font-size: 14px }
       button[type="submit"] { padding: 12px; font-size: 16px }
     }
-
-    /* Payment panel (hidden by default) */
-    .payment-panel{ display:none; margin-top:16px; padding:12px; border-radius:10px; background:linear-gradient(180deg, rgba(10,10,10,0.6), rgba(7,16,36,0.6)); border:1px solid rgba(224,224,224,0.04)}
-    .payment-panel.show{ display:block }
-    .pay-btn{ display:inline-block; background:linear-gradient(90deg,var(--gothic-purple),var(--violet-mist)); color:var(--misty-grey); padding:12px 18px; border-radius:8px; text-decoration:none; font-weight:700 }
-    .qr-fallback{ margin-top:12px; display:flex; gap:12px; align-items:center }
+    .qr-fallback{ margin-top:12px; display:flex; gap:12px; align-items:center; justify-content: center }
     .qr-fallback img{ width:140px; height:140px; border-radius:8px; background:#111 }
   </style>
 </head>
@@ -135,7 +130,7 @@
     <h1 class="center-title">Register for Never More Hackathon</h1>
     <p class="center-caption">join the dark side of innovation</p>
 
-    <form class="form-container" action="#" method="post">
+    <form class="form-container" id="registerForm">
       <h2 class="form-title">Join the Shadows</h2>
       <div class="form-group">
         <label for="team-name">Team Name</label>
@@ -172,19 +167,8 @@
         <label for="problem-statement">Problem Statement</label>
         <textarea id="problem-statement" name="problem-statement" required></textarea>
       </div>
-      <div class="form-group">
-        <label for="payment-method">Payment Method</label>
-        <select id="payment-method" name="payment-method" required>
-          <option value="upi" selected>UPI</option>
-        </select>
-      </div>
-      <!-- payment UI: shown when user selects UPI -->
-      <div class="payment-panel" id="payment-panel" aria-hidden="true">
-        <div style="font-weight:700;color:var(--violet-mist)">UPI Payment</div>
-        <p style="margin:6px 0 10px;color:var(--misty-grey)">Amount to pay: <strong>₹400</strong></p>
-        <!-- Edit these values to your UPI VPA and name. Keep them server-side in production. -->
-        <div style="font-size:12px;color:var(--muted);margin-bottom:8px">(If your phone supports UPI links, tapping Pay will open the UPI app.)</div>
-        <a id="pay-link" class="pay-btn" href="#" rel="noopener noreferrer">Pay ₹400</a>
+      <div class="qr-fallback">
+        <img src="qr.jpeg" alt="Scan to Pay ₹400">
       </div>
       <div class="form-group">
         <label for="utr-number">UTR Number</label>
@@ -218,69 +202,44 @@
     overlay.addEventListener('click', toggleNav);
   });
   </script>
-  <script>
-  // UPI payment helper — client-side only. Replace upiConfig.pa with your real VPA before publishing.
-  (function(){
-    const upiConfig = {
-      pa: '6305076825-2@ybl', // <-- replace with your UPI VPA (example)
-      pn: 'UDAY',             // payer name (optional)
-      am: '400',              // amount in INR
-      cu: 'INR',
-      tn: 'NeverMore Registration'
-    };
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-    const paymentMethod = document.getElementById('payment-method');
-    const panel = document.getElementById('payment-panel');
-    const payLink = document.getElementById('pay-link');
+  const data = {
+    teamName: document.getElementById("team-name").value,
+    teamLead: document.getElementById("team-lead").value,
+    member1: document.getElementById("member1").value,
+    member2: document.getElementById("member2").value,
+    member3: document.getElementById("member3").value,
+    category: document.getElementById("card-name").value,
+    problem: document.getElementById("problem-statement").value,
+    utr: document.getElementById("utr-number").value
+  };
 
-    function buildUpiUri(){
-      // Build UPI deeplink according to UPI spec
-      const params = new URLSearchParams();
-      params.set('pa', upiConfig.pa);
-      if(upiConfig.pn) params.set('pn', upiConfig.pn);
-      params.set('am', upiConfig.am);
-      params.set('cu', upiConfig.cu);
-      if(upiConfig.tn) params.set('tn', upiConfig.tn);
-      return 'upi://pay?' + params.toString();
+  fetch("https://script.google.com/macros/s/AKfycbwgjyx4grTGhnk-sZMeGgeXSliA6_3U6NVETtBWwW3RWJ-dkv37e4Uhv5W_WBBj2UFa/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(res => {
+    if (res.status === "success") {
+      alert("✅ Registration Successful!");
+      document.getElementById("registerForm").reset();
+    } else {
+      alert("❌ Server Error");
+      console.log(res);
     }
+  })
+  .catch(err => {
+    alert("❌ Network Error");
+    console.error(err);
+  });
+});
+</script>
 
-    paymentMethod && paymentMethod.addEventListener('change', function(e){
-      if(e.target.value === 'upi'){
-        panel.classList.add('show');
-        panel.setAttribute('aria-hidden','false');
-        const upiUri = buildUpiUri();
-        payLink.setAttribute('href', upiUri);
-      } else {
-        panel.classList.remove('show');
-        panel.setAttribute('aria-hidden','true');
-        payLink.setAttribute('href', '#');
-      }
-    });
-
-    if(paymentMethod.value === 'upi'){
-      panel.classList.add('show');
-      panel.setAttribute('aria-hidden','false');
-      const upiUri = buildUpiUri();
-      payLink.setAttribute('href', upiUri);
-    }
-
-    // Form submit: prevent final submit until user provides UTR (or implement your server-side flow)
-    const form = document.querySelector('.form-container');
-    form && form.addEventListener('submit', function(ev){
-      const pm = document.getElementById('payment-method').value;
-      if(pm === 'upi'){
-        // Ask user to confirm payment was completed and filled UTR.
-        const utr = document.getElementById('utr-number').value.trim();
-        if(!utr){
-          ev.preventDefault();
-          alert('Please complete the UPI payment (Pay ₹400) and enter the UTR/transaction reference here before submitting.');
-          return false;
-        }
-        // If you want automatic verification, you'll need a server-side integration with a payment gateway or bank APIs.
-      }
-      // for non-UPI methods this example does no real payment processing
-    });
-  })();
-  </script>
 </body>
 </html>
