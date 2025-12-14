@@ -524,8 +524,8 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
 
 @media (max-width:480px){
   /* smallest screens: stack cards vertically and remove card padding so images fit */
-  .cards { flex-direction: column; gap: 30px; padding: 8px 12px; }
-  .card{ padding:0; min-width:unset; width:100%; height:auto; flex:0 0 auto; border-radius:12px; overflow:visible; }
+  .cards { flex-direction: column; gap: 30px; padding: 8px 12px; align-items: center; }
+  .card{ padding:0; min-width:unset; width:auto; height:auto; flex:0 0 auto; border-radius:12px; overflow:visible; margin: 0 auto; }
   .card img { width:auto; height:auto; display:block; border-radius:12px; max-width:100%; }
 }
 
