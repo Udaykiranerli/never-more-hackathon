@@ -65,6 +65,57 @@
   <main class="centered">
     <h1>FAQs</h1>
     <p>Frequently asked questions.</p>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="question">What lurks in the shadows of Never More?</div>
+        <div class="answer">The Never More Hackathon is a 2-day coding extravaganza where teams of nocturnal innovators battle to create groundbreaking solutions under the veil of eternal world.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">How do I join the coven of coders?</div>
+        <div class="answer">Venture forth to our registration portal and submit your details. Choose to join an existing team or forge your own alliance of outcasts.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">What dark arts and arcane tools are permitted?</div>
+        <div class="answer">All major programming languages, frameworks, and mystical APIs are allowed, as long as they don't summon forbidden entities or violate the sacred rules.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">Will there be treasures for the victorious?</div>
+        <div class="answer">Yes, the triumphant teams shall receive coveted trophies, certificates of arcane mastery, and substantial cash prizes to fuel their future endeavors.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">What if I become ensnared in the labyrinth of code?</div>
+        <div class="answer">Fear not, for our organizers—the keepers of ancient knowledge—will be present throughout the event to guide lost souls and unravel tangled spells.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">Is sustenance provided for these nocturnal creatures?</div>
+        <div class="answer">Indeed, meals, snacks, and elixirs of energy will be served at regular intervals to maintain your vitality through the long night.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">Can I bring my faithful familiar?</div>
+        <div class="answer">While pets are not permitted in the sanctum, your enchanted laptop shall be your most trusted companion in this digital ritual.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">What happens if the veil of power fails?</div>
+        <div class="answer">We have summoned backup generators to ensure the encroaching darkness does not consume your progress or extinguish your creative flames.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">Are there restrictions on the number of sorcerers per team?</div>
+        <div class="answer">Teams may consist of 2 to 4 members, allowing for balanced covens that can tackle challenges without overwhelming the arcane forces.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="question">What if I arrive late to the midnight gathering?</div>
+        <div class="answer">Late registration is permitted until the stroke of midnight, but early arrival is advised to avoid the wrath of the event's dark schedule.</div>
+      </div>
+    </div>
   </main>
 
   <footer class="footer" id="organizers">
@@ -146,6 +197,25 @@
   document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlay');
     overlay.addEventListener('click', toggleNav);
+
+    // FAQ Accordion functionality
+    const questions = document.querySelectorAll('.question');
+    questions.forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+        
+        // Close all answers
+        document.querySelectorAll('.answer').forEach(ans => ans.classList.remove('open'));
+        document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+        
+        // Open clicked one if it was closed
+        if (!isOpen) {
+          answer.classList.add('open');
+          question.classList.add('active');
+        }
+      });
+    });
   });
   </script>
 </body>
