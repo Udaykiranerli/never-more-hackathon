@@ -100,6 +100,11 @@
     }
     .qr-fallback{ margin-top:12px; display:flex; gap:12px; align-items:center; justify-content: center }
     .qr-fallback img{ width:140px; height:140px; border-radius:8px; background:#111 }
+    #msg{
+      color: #61b752;
+      margin-top: -10px;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -130,7 +135,7 @@
     <h1 class="center-title">Register for Never More Hackathon</h1>
     <p class="center-caption">join the dark side of innovation</p>
 
-    <form class="form-container" id="registerForm">
+    <form class="form-container" id="registerForm" name="submit-to-google-sheet">
       <h2 class="form-title">Join the Shadows</h2>
       <div class="form-group">
         <label for="team-name">Team Name</label>
@@ -176,6 +181,7 @@
       </div>
       <button type="submit">Submit Registration</button>
     </form>
+    <span id="msg"></span>
   </main>
 
   <footer class="footer" id="organizers">
@@ -203,42 +209,22 @@
   });
   </script>
 <script>
-document.getElementById("registerForm").addEventListener("submit", function(e) {
-  e.preventDefault();
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbywVit32kXuDHhRqyaLA8ATD3d_K4soRAHDtJDWmNU4pNcbIsHL84Kv4xd9enGIMpXidA/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg");
 
-  const data = {
-    teamName: document.getElementById("team-name").value,
-    teamLead: document.getElementById("team-lead").value,
-    member1: document.getElementById("member1").value,
-    member2: document.getElementById("member2").value,
-    member3: document.getElementById("member3").value,
-    category: document.getElementById("card-name").value,
-    problem: document.getElementById("problem-statement").value,
-    utr: document.getElementById("utr-number").value
-  };
-
-  fetch("https://script.google.com/macros/s/AKfycbwgjyx4grTGhnk-sZMeGgeXSliA6_3U6NVETtBWwW3RWJ-dkv37e4Uhv5W_WBBj2UFa/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML = "registration successful! see you at the event."
+        setTimeout(function(){
+          msg.innerHTML =""
+        },5000)
+        form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
   })
-  .then(res => res.json())
-  .then(res => {
-    if (res.status === "success") {
-      alert("✅ Registration Successful!");
-      document.getElementById("registerForm").reset();
-    } else {
-      alert("❌ Server Error");
-      console.log(res);
-    }
-  })
-  .catch(err => {
-    alert("❌ Network Error");
-    console.error(err);
-  });
-});
 </script>
 
 </body>
