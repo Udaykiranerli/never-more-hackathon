@@ -450,6 +450,9 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
   margin:18px auto 0;
   display:flex;
   flex-direction:row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
 }
 
 /* Footer — professional, theme-aligned */
@@ -494,7 +497,7 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
   transform:translateY(18px) scale(0.995);
   transition:opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1), box-shadow .2s, border .2s;
   box-shadow:0 8px 30px rgba(0,0,0,0.6);
-  flex: 0 0 calc((100% - 4*18px) / 5); /* five equal cards when space allows */
+  flex: 0 0 calc((100% - 2*18px) / 3); /* three equal cards when space allows */
   min-width:220px;
   height: 280px; /* uniform card height */
   display:flex;
