@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Never More — Blackcats</title>
+  <title>Never More — Smart Agriculture</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -31,19 +31,113 @@
   <div id="overlay" class="overlay"></div>
 
   <main class="centered">
-    <h1 class="center-title">Blackcats</h1>
-    <p class="center-caption">mysterious and elusive guardians</p>
-    <p class="center-desc">Explore hidden patterns in crop health and protective mechanisms for sustainable farming. Blackcats embody the vigilant protectors that safeguard harvests in the shadows of the fields.</p>
-    <h2>Domain: Smart Agriculture</h2>
-    <h3>Problem Statements:</h3>
-    <ol class="problem-statements">
-      <li><strong>CEC-PS-ID-01 - Crop Advisory Web Application:</strong><br> Farmers need simple guidance on suitable crops, fertilizers, and seasons based on basic inputs like location and soil type.</li>
-      <li><strong>CEC-PS-ID-02 - Leaf Disease Image Classifier:</strong> <br>Early identification of crop diseases can reduce losses. Develop a basic image-based disease detection system.</li>
-      <li><strong>CEC-PS-ID-03 - Smart Irrigation Decision Support System:</strong><br> Farmers overuse water due to lack of irrigation timing insights. Create a dashboard that suggests irrigation based on moisture and weather data.</li>
-      <li><strong>CEC-PS-ID-04 - Farmer Market Price Tracker:</strong> <br>Farmers lack awareness of current market prices. Build a simple platform showing daily crop prices.</li>
-      <li><strong>CEC-PS-ID-05 - Fertilizer Recommendation Tool:</strong><br> Improper fertilizer usage reduces yield. Develop a rule-based recommendation system.</li>
-      <li><strong>CEC-PS-ID-06 - Weather Alert System for Farmers:</strong> <br>Unexpected weather damages crops. Create an alert system for rainfall and temperature extremes.</li>
-    </ol>
+    <h1 class="center-title">Smart Agriculture</h1>
+    <p class="center-caption">Innovative solutions for sustainable farming</p>
+    <p class="center-desc">Explore the problem statements for the Smart Agriculture domain in the Never More Hackathon.</p>
+    <h2>Problem Statements:</h2>
+    <div class="problem-statements">
+      <div class="problem-statement">
+        <h3>CEC-SAG-PS-01 - Crop Advisory Web Application</h3>
+        <h4>Problem Statement</h4>
+        <p>This problem statement proposes the development of a smart crop advisory system to assist farmers in selecting suitable crops, fertilizers, and sowing seasons based on local conditions. The system can:</p>
+        <ul>
+          <li>Accept inputs such as soil type, location, and season</li>
+          <li>Recommend suitable crops and fertilizers</li>
+          <li>Provide basic weather-based suggestions</li>
+          <li>Display best farming practices</li>
+          <li>Support regional language interfaces</li>
+        </ul>
+        <h4>Background</h4>
+        <p>Farmers often rely on traditional knowledge or guesswork while selecting crops, leading to low yield and losses. Lack of accessible digital advisory platforms worsens the problem, especially in rural areas.</p>
+        <h4>Expected Solution</h4>
+        <p>A web or mobile-based advisory platform that includes:</p>
+        <ul>
+          <li>Crop and fertilizer recommendation engine</li>
+          <li>Weather integration</li>
+          <li>Simple user-friendly interface</li>
+          <li>Localized language support</li>
+        </ul>
+      </div>
+      <div class="problem-statement">
+        <h3>CEC-SAG-PS-02 - Leaf Disease Image Classifier</h3>
+        <h4>Problem Statement</h4>
+        <p>Develop an image-based crop disease detection system to identify plant leaf diseases at early stages. The system can:</p>
+        <ul>
+          <li>Accept leaf images from users</li>
+          <li>Classify diseases using AI models</li>
+          <li>Suggest preventive measures</li>
+          <li>Display confidence levels</li>
+          <li>Work with limited datasets</li>
+        </ul>
+        <h4>Background</h4>
+        <p>Crop diseases significantly reduce productivity. Farmers lack immediate access to experts, resulting in delayed treatment.</p>
+        <h4>Expected Solution</h4>
+        <p>An AI-powered image classification tool using:</p>
+        <ul>
+          <li>Pre-trained CNN models</li>
+          <li>Simple upload interface</li>
+          <li>Disease database and remedies</li>
+        </ul>
+      </div>
+      <div class="problem-statement">
+        <h3>CEC-SAG-PS-03 - Smart Irrigation Decision Support System</h3>
+        <h4>Problem Statement</h4>
+        <p>Design a system to optimize irrigation schedules based on environmental and soil data. The system can:</p>
+        <ul>
+          <li>Analyze moisture and weather data</li>
+          <li>Suggest irrigation timing</li>
+          <li>Reduce water wastage</li>
+          <li>Display usage insights</li>
+        </ul>
+        <h4>Background</h4>
+        <p>Over-irrigation leads to water wastage and soil degradation. Many farmers lack scientific irrigation guidance.</p>
+        <h4>Expected Solution</h4>
+        <p>A decision-support dashboard using simulated or sensor data.</p>
+      </div>
+      <div class="problem-statement">
+        <h3>CEC-SAG-PS-04 - Farmer Market Price Tracker</h3>
+        <h4>Problem Statement</h4>
+        <p>Build a platform that provides farmers with updated crop market prices. The system can:</p>
+        <ul>
+          <li>Fetch daily prices</li>
+          <li>Display trends</li>
+          <li>Compare markets</li>
+          <li>Enable informed selling decisions</li>
+        </ul>
+        <h4>Background</h4>
+        <p>Farmers often sell produce without knowing real-time prices, resulting in financial losses.</p>
+        <h4>Expected Solution</h4>
+        <p>A web/mobile app integrating public datasets or APIs.</p>
+      </div>
+      <div class="problem-statement">
+        <h3>CEC-SAG-PS-05 - Fertilizer Recommendation Tool</h3>
+        <h4>Problem Statement</h4>
+        <p>Develop a rule-based fertilizer recommendation system.</p>
+        <ul>
+          <li>Suggest fertilizers based on crop and soil</li>
+          <li>Avoid overuse</li>
+          <li>Improve yield</li>
+        </ul>
+        <h4>Background</h4>
+        <p>Improper fertilizer usage harms soil health and crops.</p>
+        <h4>Expected Solution</h4>
+        <p>A simple rule-based decision system with a clean UI.</p>
+      </div>
+      <div class="problem-statement">
+        <h3>CEC-SAG-PS-06 - Weather Alert System for Farmers</h3>
+        <h4>Problem Statement</h4>
+        <p>Create a weather alert system to notify farmers of adverse conditions.</p>
+        <ul>
+          <li>Provide rainfall and temperature alerts</li>
+          <li>Issue warnings</li>
+          <li>Support SMS/app notifications</li>
+        </ul>
+        <h4>Background</h4>
+        <p>Sudden weather changes damage crops due to lack of timely alerts.</p>
+        <h4>Expected Solution</h4>
+        <p>An alert-based system using weather APIs.</p>
+      </div>
+    </div>
     <a class="enter-btn" href="darkworld-cards.html">Back to Cards</a>
   </main>
 

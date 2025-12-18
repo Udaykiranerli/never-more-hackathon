@@ -162,6 +162,10 @@
         <input type="text" id="member3" name="member3">
       </div>
       <div class="form-group">
+        <label for="member4">Team Member 4</label>
+        <input type="text" id="member4" name="member4">
+      </div>
+      <div class="form-group">
         <label for="card-name">Card Name (Category)</label>
         <select id="card-name" name="card-name" required>
           <option value="">Select a category</option>
@@ -177,6 +181,7 @@
         <label for="problem-ID">Problem ID</label>
         <textarea id="problem-ID" name="problem-ID" required></textarea>
       </div>
+      <p>Per head 125/-</p>
       <div class="qr-fallback">
         <img src="qr.jpeg" alt="Scan to Pay ₹400">
       </div>
@@ -225,7 +230,7 @@
         msg.innerHTML = "registration successful! see you at the event."
         setTimeout(function(){
           msg.innerHTML =""
-        },5000)
+        },1000)
         form.reset()
       })
       .catch(error => console.error('Error!', error.message))
