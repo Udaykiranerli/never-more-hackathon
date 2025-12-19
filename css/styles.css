@@ -399,32 +399,69 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
 
 /* subtle pulse to the halo */
 
-/* Team list / card styles */
+/* Team list / card styles (responsive grid + elevated cards) */
 .teams{
-  display:flex;
-  gap:1rem;
-  justify-content:center;
-  align-items:flex-start;
-  padding:18px 12px 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  max-width: 1100px;
+  margin: 20px auto 36px;
+  padding: 12px;
+  align-items: start;
 }
 .team-card{
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(224,224,224,0.06);
-  padding:16px 18px;
-  border-radius:10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-  max-width:360px;
-  min-width:220px;
+  position:relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(10,10,12,0.06));
+  border: 1px solid rgba(224,224,224,0.04);
+  padding:18px 20px;
+  border-radius:14px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease, border-color .18s ease;
   text-align:left;
+  min-height:92px;
+}
+.team-card::after{
+  /* subtle decorative diagonal accent */
+  content: "";
+  position:absolute;
+  right:-40px;
+  top:-40px;
+  width:160px;
+  height:160px;
+  background: radial-gradient(circle at 30% 30%, rgba(123,31,162,0.06), transparent 30%), linear-gradient(135deg, rgba(74,20,140,0.06), transparent 40%);
+  transform:rotate(12deg);
+  pointer-events:none;
+}
+.team-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(74,20,140,0.24), 0 6px 18px rgba(0,0,0,0.6);
+  border-color: rgba(123,31,162,0.18);
 }
 .team-name{
   font-family: 'Cinzel Decorative', 'Merriweather', serif;
-  font-size:20px;
+  font-size:18px;
   color:var(--pale-lavender);
   margin:0 0 6px 0;
-  text-transform:capitalize;
+  text-transform:uppercase;
+  letter-spacing:0.8px;
 }
-.team-lead{margin:0;color:var(--muted);font-size:14px}
+.team-name::first-letter{ color: var(--violet-mist); }
+.team-lead{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* Small badge for lead (makes lists easier to scan) */
+.team-lead strong{ color:var(--pale-lavender); font-weight:700; display:inline-block; margin-right:6px }
+
+@media (max-width:600px){
+  .teams{ grid-template-columns: 1fr; padding: 8px 12px; gap:14px; }
+  .team-card{ padding:14px; border-radius:12px }
+  .team-name{ font-size:16px }
+}
 
 @keyframes haloPulse{ 0%{ transform:scale(0.98); opacity:.9 }50%{ transform:scale(1.02); opacity:1 }100%{ transform:scale(0.98); opacity:.9 } }
 .enter-btn::before{ animation: haloPulse 6s ease-in-out infinite }
