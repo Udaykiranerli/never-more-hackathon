@@ -398,6 +398,34 @@ hr, .divider{ border-color: rgba(224,224,224,0.06) }
 .enter-btn:active::before{ transform:scale(.96); opacity:0.85 }
 
 /* subtle pulse to the halo */
+
+/* Team list / card styles */
+.teams{
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+  align-items:flex-start;
+  padding:18px 12px 28px;
+}
+.team-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(224,224,224,0.06);
+  padding:16px 18px;
+  border-radius:10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  max-width:360px;
+  min-width:220px;
+  text-align:left;
+}
+.team-name{
+  font-family: 'Cinzel Decorative', 'Merriweather', serif;
+  font-size:20px;
+  color:var(--pale-lavender);
+  margin:0 0 6px 0;
+  text-transform:capitalize;
+}
+.team-lead{margin:0;color:var(--muted);font-size:14px}
+
 @keyframes haloPulse{ 0%{ transform:scale(0.98); opacity:.9 }50%{ transform:scale(1.02); opacity:1 }100%{ transform:scale(0.98); opacity:.9 } }
 .enter-btn::before{ animation: haloPulse 6s ease-in-out infinite }
 
